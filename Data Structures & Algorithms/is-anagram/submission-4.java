@@ -1,0 +1,35 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        HashMap<Character,Integer> map= new HashMap<>();
+        int n1=s.length();
+        int n2=t.length();
+        if(n1!=n2){
+            return false;
+        }
+        int i;
+
+        for(i=0;i<n1;i++){
+            char ch=s.charAt(i);
+            if(map.containsKey(ch)){
+                map.put(ch,map.get(ch)+1);
+            }
+            else{
+                map.put(ch,1);
+            }
+
+        }
+        for(i=0;i<n2;i++){
+            char ch=t.charAt(i);
+            if(map.containsKey(ch)){
+                map.put(ch,map.get(ch)-1);
+                if(map.get(ch)==0){
+                    map.remove(ch);
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        return map.isEmpty();
+    }
+}
